@@ -3,52 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 10:04:40 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 15:52:45 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:32:27 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/09 12:00:54 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_numlen(int n)
+static	void	ft_putnbr(int n, char *str)
 {
-	int i;
-
-	i = 0;
-	if (n <= 0)
-		++i;
-	while (n)
+	if (n == -2147483648)
 	{
-		n /= 10;
-		++i;
+		ft_putnbr(147483648, str);
+		ft_putnbr(2, str - 9);
+		return ;
 	}
-	return (i);
+	if (n < 0)
+		n *= -1;
+	if (n >= 10)
+		ft_putnbr(n / 10, str - 1);
+	*str = '0' + n % 10;
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	int		num;
-	int		f;
-	char	*str;
+	int		size;
+	int		copy;
+	char	*new;
 
-	num = ft_numlen(n);
-	f = 1;
-	str = (char*)malloc(sizeof(char) * (num + 1));
-	if (!str)
-		return (NULL);
-	*(str + num) = '\0';
-	if (n == 0)
-		*(str + --num) = '0';
-	if (n < 0)
-		f = -1;
-	while (n)
+	copy = n;
+	size = 0;
+	while (copy)
 	{
-		*(str + --num) = '0' + (n % 10) * f;
-		n /= 10;
+		copy /= 10;
+		size++;
 	}
-	if (f == -1)
-		*(str + --num) = '-';
-	return (str);
+	if (n <= 0)
+		size++;
+	new = (char*)malloc(sizeof(char) * (size + 1));
+	if (!new)
+		return (NULL);
+	*(new + size) = '\0';
+	if (n < 0)
+		*new = '-';
+	ft_putnbr(n, (new + --size));
+	return (new);
 }

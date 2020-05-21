@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 10:05:57 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 15:48:27 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:32:31 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/08 17:17:38 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 10:04:29 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 10:04:30 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:30:06 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/09 12:00:32 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int ch)
+int		ft_isprint(int ch)
 {
 	if (ch >= 32 && ch <= 126)
 		return (1);

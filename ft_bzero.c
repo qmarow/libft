@@ -5,16 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 16:24:35 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 16:29:00 by qmarowak         ###   ########.fr       */
+/*   Created: 2013/11/18 13:37:42 by kube              #+#    #+#             */
+/*   Updated: 2020/05/19 16:14:14 by qmarowak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_bzero(void *s, int n)
 {
-	int i;
-
-	i = -1;
 	while (n--)
-		*((char*)s + ++i) = 0;
+		*((char*)s + n) = 0;
 }

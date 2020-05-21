@@ -3,45 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school>      +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 13:38:42 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 16:22:09 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:28:21 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/11 19:05:45 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	perevod(char *str, int i, int f)
-{
-	long long		a;
+#include "libft.h"
 
-	a = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+int		ft_atoi(const char *str)
+{
+	unsigned long	res;
+	int				sign;
+
+	res = 0;
+	sign = 1;
+	while (*str == '\t' || *str == '\f' || *str == '\n'
+				|| *str == ' ' || *str == '\r' || *str == '\v')
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (ft_isdigit(*str))
 	{
-		a = a * 10 + str[i] - '0';
-		++i;
-		if (f == -1 && (a - 1) > 9223372036854775807)
+		res = res * 10 + (*str++ - '0');
+		if (res > 9223372036854775807 && sign == -1)
 			return (0);
-		if (a > 9223372036854775807 && f)
+		if (res > 9223372036854775807 && sign == 1)
 			return (-1);
 	}
-	return ((int)a);
-}
-
-int			ft_atoi(char *str)
-{
-	int i;
-	int f;
-
-	i = 0;
-	f = 1;
-	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
-	|| (str[i] == '\v') || (str[i] == '\r') || (str[i] == '\f'))
-		++i;
-	if (str[i] == '+')
-		return (perevod(str, ++i, f));
-	if (str[i] == '-')
-		return (perevod(str, ++i, f * -1) * -1);
-	if (str[i] >= '0' && str[i] <= '9')
-		return (perevod(str, i, f));
-	return (0);
+	return ((int)res * sign);
 }

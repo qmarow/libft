@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 10:04:19 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 10:04:20 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:29:59 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/09 11:55:56 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+int		ft_isascii(int ch)
 {
-	if (c >= 0 && c <= 127)
+	if (ch >= 0 && ch <= 127)
 		return (1);
 	return (0);
 }

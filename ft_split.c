@@ -3,84 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 10:06:13 by qmarowak          #+#    #+#             */
-/*   Updated: 2020/05/19 15:54:21 by qmarowak         ###   ########.fr       */
+/*   Created: 2020/05/03 12:32:40 by utoomey           #+#    #+#             */
+/*   Updated: 2020/05/10 00:13:41 by utoomey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_strl(const char *s, char c)
+static	int		ft_get_count_word(char const *s, char ch)
 {
-	int i;
-	int a;
+	int	size;
+	int	flag;
 
-	i = -1;
-	a = 0;
-	while (*(s + ++i) != '\0')
+	size = 0;
+	flag = 1;
+	while (*s)
 	{
-		if (*(s + i) != c && *(s + i) != '\0')
+		if (*s != ch && flag)
 		{
-			while (*(s + i) != c && *(s + i))
-				++i;
-			++a;
-			if (*(s + i) == '\0')
-				break ;
+			size++;
+			flag = 0;
 		}
+		else if (*s == ch)
+			flag = 1;
+		s++;
 	}
-	return (a);
+	return (size);
 }
 
-static void		ft_clear(char **str)
+static	void	ft_all_clear(char **new, int count_word)
 {
-	int a;
-
-	a = 0;
-	while (str[a])
-		free(str[a]);
-	free(str);
-}
-
-static char		**ft_record(char *s, char c, char **str, int count)
-{
-	int i;
-	int a;
-	int size;
+	int	i;
 
 	i = 0;
-	a = -1;
-	while (++a < count)
-	{
-		size = 0;
-		while (*(s + i) == c)
-			++i;
-		while (*(s + i + size) && *(s + i + size) != c)
-			++size;
-		str[a] = ft_substr(s, i, size);
-		if (!str[a])
-		{
-			ft_clear(str);
-			return (NULL);
-		}
-		i += size;
-	}
-	return (str);
+	while (i < count_word)
+		free(*(new + i++));
+	free(new);
 }
 
-char			**ft_split(char const *s, char c)
+static	void	ft_edit(char **new, char const *s, char ch, int count_word)
 {
-	int		count;
-	char	**str;
+	unsigned	k;
+	size_t		size;
+
+	k = 0;
+	while (count_word--)
+	{
+		size = 0;
+		while (*(s + k) == ch)
+			k++;
+		while (*(s + k + size) != ch && *(s + k + size))
+			size++;
+		if (size != 0)
+			*new = ft_substr(s, k, size);
+		if (!(*new))
+		{
+			ft_all_clear(new, count_word);
+			return ;
+		}
+		k = k + size;
+		new++;
+	}
+}
+
+char			**ft_split(char const *s, char ch)
+{
+	int		count_word;
+	char	**new;
 
 	if (!s)
 		return (NULL);
-	count = ft_strl(s, c);
-	str = (char**)malloc(sizeof(char*) * (count + 1));
-	if (!str)
+	count_word = ft_get_count_word(s, ch);
+	new = (char**)malloc(sizeof(char*) * (count_word + 1));
+	if (!new)
 		return (NULL);
-	*(str + count) = 0;
-	ft_record((char*)s, c, str, count);
-	return (str);
+	*(new + count_word) = 0;
+	ft_edit(new, s, ch, count_word);
+	return (new);
 }

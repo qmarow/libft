@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+         #
+#    By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/05/19 23:15:00 by qmarowak          #+#    #+#              #
-#    Updated: 2020/05/19 23:15:26 by qmarowak         ###   ########.fr        #
+#    Created: 2020/05/08 14:13:23 by utoomey           #+#    #+#              #
+#    Updated: 2020/05/10 00:37:24 by utoomey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
