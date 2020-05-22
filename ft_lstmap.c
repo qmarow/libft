@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/10 00:08:27 by utoomey           #+#    #+#             */
-/*   Updated: 2020/05/10 10:41:34 by utoomey          ###   ########.fr       */
+/*   Created: 2020/05/19 10:05:13 by qmarowak          #+#    #+#             */
+/*   Updated: 2020/05/19 10:42:30 by qmarowak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *list, void *(*f)(void*), void (*del)(void*))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void*))
 {
-	t_list	*new_list;
-	t_list	*start_list;
+	t_list *list;
+	t_list *start;
 
-	if (!list || !f)
+	if (!lst || !f)
 		return (NULL);
-	new_list = ft_lstnew(f(list->content));
-	if (!new_list)
+	list = ft_lstnew(f(lst->content));
+	if (!list)
 		return (NULL);
-	start_list = new_list;
-	while (list->next)
+	start = list;
+	while (lst->next)
 	{
-		list = list->next;
-		new_list->next = ft_lstnew(f(list->content));
-		if (!(new_list->next))
+		lst = lst->next;
+		list->next = ft_lstnew(f(lst->content));
+		if (!list)
 		{
-			ft_lstclear(&start_list, del);
+			ft_lstclear(&start, d);
 			return (NULL);
 		}
-		new_list = new_list->next;
+		list = list->next;
 	}
-	return (start_list);
+	return (start);
 }

@@ -3,51 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 12:32:27 by utoomey           #+#    #+#             */
-/*   Updated: 2020/05/09 12:00:54 by utoomey          ###   ########.fr       */
+/*   Created: 2020/05/19 10:04:40 by qmarowak          #+#    #+#             */
+/*   Updated: 2020/05/19 15:52:45 by qmarowak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	ft_putnbr(int n, char *str)
+static int	ft_numlen(int n)
 {
-	if (n == -2147483648)
+	int i;
+
+	i = 0;
+	if (n <= 0)
+		++i;
+	while (n)
 	{
-		ft_putnbr(147483648, str);
-		ft_putnbr(2, str - 9);
-		return ;
+		n /= 10;
+		++i;
 	}
-	if (n < 0)
-		n *= -1;
-	if (n >= 10)
-		ft_putnbr(n / 10, str - 1);
-	*str = '0' + n % 10;
+	return (i);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	int		size;
-	int		copy;
-	char	*new;
+	int		num;
+	int		f;
+	char	*str;
 
-	copy = n;
-	size = 0;
-	while (copy)
-	{
-		copy /= 10;
-		size++;
-	}
-	if (n <= 0)
-		size++;
-	new = (char*)malloc(sizeof(char) * (size + 1));
-	if (!new)
+	num = ft_numlen(n);
+	f = 1;
+	str = (char*)malloc(sizeof(char) * (num + 1));
+	if (!str)
 		return (NULL);
-	*(new + size) = '\0';
+	*(str + num) = '\0';
+	if (n == 0)
+		*(str + --num) = '0';
 	if (n < 0)
-		*new = '-';
-	ft_putnbr(n, (new + --size));
-	return (new);
+		f = -1;
+	while (n)
+	{
+		*(str + --num) = '0' + (n % 10) * f;
+		n /= 10;
+	}
+	if (f == -1)
+		*(str + --num) = '-';
+	return (str);
 }

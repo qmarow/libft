@@ -3,32 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 12:29:29 by utoomey           #+#    #+#             */
-/*   Updated: 2020/05/09 11:44:58 by utoomey          ###   ########.fr       */
+/*   Created: 2020/05/19 10:07:04 by qmarowak          #+#    #+#             */
+/*   Updated: 2020/05/19 15:14:26 by qmarowak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *find, size_t len)
+char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
-	size_t	i;
-	size_t	k;
+	size_t i;
+	size_t a;
 
-	if (*find == '\0')
-		return ((char*)str);
-	i = 0;
-	while (i < len && *(str + i))
+	i = -1;
+	if (!*s2)
+		return ((char*)s1);
+	while (*((char*)s1 + ++i) != '\0' && len)
 	{
-		k = 0;
-		while (*(str + i + k) == *(find + k) &&
-				(i + k) < len && *(find + k) && *(str + i + k))
-			k++;
-		if (*(find + k) == '\0')
-			return ((char*)str + i);
-		i++;
+		a = 0;
+		while ((*((char*)s1 + i + a) == *((char*)s2 + a)) && len)
+		{
+			if (a == len)
+				len = 0;
+			if (*((char*)s2 + a + 1) == '\0' && len)
+				return (((char*)s1 + i));
+			++a;
+		}
+		--len;
 	}
 	return (NULL);
 }

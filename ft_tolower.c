@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: utoomey <utoomey@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: qmarowak <qmarowak@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 12:29:37 by utoomey           #+#    #+#             */
-/*   Updated: 2020/05/08 17:19:23 by utoomey          ###   ########.fr       */
+/*   Created: 2020/05/19 10:07:21 by qmarowak          #+#    #+#             */
+/*   Updated: 2020/05/19 15:38:08 by qmarowak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int ch)
+int		ft_tolower(int c)
 {
-	if (ch >= 'A' && ch <= 'Z')
-		return (ch + 32);
-	return (ch);
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }
